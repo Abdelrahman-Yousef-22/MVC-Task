@@ -1,0 +1,61 @@
+﻿@model BookReadWithClientsVM
+
+@{
+    var book = Model;
+    IEnumerable<ClientReadVM> clients = book?.Clients ?? new List<ClientReadVM>();
+
+}
+
+
+<h1>Book @book.Name Details</h1>
+
+<ul class="list-group">
+    <li class="list-group-item">Id: @book.Id</li>
+    <li class="list-group-item">Name: @book.Name</li>
+    <li class="list-group-item">Quantity: @book.Quantity</li>
+    <li class="list-group-item">Available Quantity: @book.AvailableQuantity</li>
+
+
+</ul>
+<br />
+
+<h1>its borrowers</h1>
+<h5>@book.Clients.Count() borrowers</h5>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Borrower Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (clients.Count() > 0)
+        {
+
+
+            @foreach (var client in clients)
+            {
+                <tr>
+                    <td>@client.Id</td>
+                    <td><a class="btn btn-info" asp-controller="Clients" asp-action="Details" asp-route-id="@client.Id">@client.Name</a></td>
+                    <td>
+                        <form asp-action="Return" method="post">
+                            <input type="hidden" name="ClientId" value="@client.Id" />
+                            <input type="hidden" name="BookId" value="@book.Id" />
+                            <button type="submit" class="btn btn-primary">Return</button>
+                        </form>
+                    </td>
+
+
+
+
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>

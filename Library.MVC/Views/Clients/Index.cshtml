@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ClientReadVM>
+
+@{
+    var clients = Model;
+    bool? requestStatus = TempData[Constants.Status] as bool?;
+    var requestMessage = TempData[Constants.Message] as string;
+}
+
+@if (requestStatus is null) { }
+else if (requestStatus == true)
+{
+    <h3 class="alert alert-success"> @requestMessage </h3>
+}
+
+else if (requestStatus == false)
+{
+    <h3 class="alert alert-danger"> @requestMessage </h3>
+}
+
+<h1>Clients</h1>
+
+
+
+<div>
+    <a class="btn btn-primary" asp-action="Add">Add new Client</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var client in clients)
+        {
+            <tr>
+                <td>@client.Id</td>
+                <th>@client.Name</th>
+                <td>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@client.Id">Details</a>
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@client.Id">Edit</a>
+                    <a class="btn btn-danger deleteBtn " asp-action="Delete" asp-route-id="@client.Id">Delete</a>
+                </td>
+
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+@section Scripts{
+
+    @*
+        javascript to show confirm alert when delete any user
+    *@
+
+    <script>
+        var deleteBtn = document.querySelectorAll('.deleteBtn')
+        deleteBtn.forEach(function (btn) {
+            btn.addEventListener('click', function (event) {
+                event.preventDefault();
+                if (confirm('Are you sure ?????')) {
+                    console.log(btn)
+                    window.location.href = btn.href;
+                }
+                else {
+                    console.log('canceled')
+                }
+            })
+        })
+
+    </script>
+
+
+
+}

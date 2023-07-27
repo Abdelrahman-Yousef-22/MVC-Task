@@ -1,0 +1,108 @@
+﻿@model IEnumerable<BooksReadVM>
+
+@{
+    var books = Model;
+    bool? requestStatus = TempData[Constants.Status] as bool?;
+    var requestMessage = TempData[Constants.Message] as string;
+
+
+    
+}
+@if (requestStatus is null) { }
+else if (requestStatus == true)
+{
+    <h3 class="alert alert-success"> @requestMessage </h3>
+}
+
+else if (requestStatus == false)
+{
+    <h3 class="alert alert-danger"> @requestMessage </h3>
+}
+
+
+
+<h1>Books</h1>
+
+
+
+<div class="d-flex gap-1 flex-column flex-sm-row">
+    <div >
+        <a class="btn btn-primary" asp-action="Add">Add new Book</a>
+    </div>
+    <br />
+    <div>
+        <a class="btn btn-primary" asp-action="Borrow">Borrow Book Form</a><i class="fa-solid fa-file-arrow-up"></i>
+    </div>
+    <br />
+    <div>
+        <a class="btn btn-primary" asp-action="Return">Return Book Form</a><i class="fa-solid fa-file-arrow-down"></i>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table ">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Available Quantity</th>
+
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var book in books)
+            {
+                <tr>
+                    <td>@book.Id</td>
+                    <th class="w-50">@book.Name</th>
+                    <td>@book.Quantity</td>
+                    <td>@book.AvailableQuantity</td>
+
+                    <td>
+                        <a class="btn btn-info " asp-action="Details" asp-route-id="@book.Id">Details</a>
+                        <a class="btn btn-success  my-2 my-xl-0" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
+                        <a class="btn btn-danger  deleteBtn " asp-action="Delete" asp-route-id="@book.Id">Delete</a>
+                    </td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+@section Scripts{
+
+    @*
+        javascript to show confirm alert when delete any user
+    *@
+
+    <script>
+        var deleteBtn = document.querySelectorAll('.deleteBtn')
+        deleteBtn.forEach(function (btn) {
+            btn.addEventListener('click', function (event) {
+                event.preventDefault();
+                if (confirm('Are you sure ?????')) {
+                    console.log(btn)
+                    window.location.href = btn.href;
+                }
+                else {
+                    console.log('canceled')
+                }
+            })
+        })
+
+    </script>
+
+
+
+}

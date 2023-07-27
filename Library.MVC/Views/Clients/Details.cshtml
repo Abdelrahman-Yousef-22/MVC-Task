@@ -1,0 +1,73 @@
+﻿@model ClientReadWithBorrowedBooks
+
+@{
+    var client = Model;
+    var returnedBooks = client.ReturnedBooks;
+    var unReturnedBooks = client.UnReturnedBooks;
+
+}
+
+
+<h1>client @client.Name Details</h1>
+
+<ul class="list-group">
+    <li class="list-group-item">Id: @client.Id</li>
+    <li class="list-group-item">Name: @client.Name</li>
+
+</ul>
+
+<br />
+
+<h3>His UnReturned Books </h3>
+<h5>@unReturnedBooks.Count() Books</h5>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var book in unReturnedBooks)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Name</td>
+                <td>
+                    <form asp-controller="Books" asp-action="Return" method="post">
+                        <input type="hidden" name="ClientId" value="@client.Id" />
+                        <input type="hidden" name="BookId" value="@book.Id" />
+                        <button type="submit" class="btn btn-primary">Return</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h3 class="mt-5">His Returned Books </h3>
+<h5>@returnedBooks.Count() Books</h5>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var book in returnedBooks)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

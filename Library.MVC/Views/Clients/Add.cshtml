@@ -1,0 +1,26 @@
+﻿@model ClientAddVM
+
+@{
+
+}
+
+<h2>Add new Client</h2>
+
+<form asp-action="Add" method="post">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input asp-for="Name" type="text" class="form-control" id="Name">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+}
