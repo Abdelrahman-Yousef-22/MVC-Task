@@ -66,54 +66,7 @@ public class BooksManager : IBooksManager
         return bookVM;
     }
 
-    //public BookEditVM GetByIdToEdit(int id)
-    //{
-    //    var book = _unitOfWork.BooksRepo.GetById(id);
-    //    var bookVM = new BookEditVM
-    //    {
-    //        Id = book.Id,
-    //        Name = book.Name,
-    //        Quantity = book.Quantity
-
-    //    };
-
-    //    return bookVM;
-    //}
-
-
-
-    //public IEnumerable<DoctorsReadVM> GetByPerformance(int id)
-    //{
-    //    var doctors = _unitOfWork.BooksRepo.GetDoctorsByPerformance(id);
-    //    var doctorsVM = doctors.Select(d => new DoctorsReadVM
-    //    {
-    //        Id = d.Id,
-    //        Name = d.Name,
-    //        PerformanceRate = d.PerformanceRate,
-    //        Salary = d.Salary,
-    //        Specialization = d.Specialization,
-    //    });
-
-    //    return doctorsVM;
-    //}
-
-
-
-    //public DoctorWithPatientVM GetByIDWithPatientsandIssues(Guid id)
-    //{
-    //    var doctor = _unitOfWork.BooksRepo.GetByIdWithPatientandIssues(id);
-    //    var doctorsVM = new DoctorWithPatientVM
-    //    {
-    //        Id = doctor.Id,
-    //        Name = doctor.Name,
-    //        PerformanceRate = doctor.PerformanceRate,
-    //        Salary = doctor.Salary,
-    //        Specialization = doctor.Specialization,
-    //        Patients = doctor.Patients
-    //    };
-
-    //    return doctorsVM;
-    //}
+   
     #endregion
 
     #region 2-Add
@@ -122,7 +75,6 @@ public class BooksManager : IBooksManager
     {
         Book newBook = new Book
         {
-            //Id = book.Id,
             Name = book.Name,
             Quantity = book.Quantity,
             AvailableQuantity = book.Quantity

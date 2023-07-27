@@ -7,7 +7,6 @@ public interface IBooksManager
     BookEditVM GetByIdToEdit(int id);
 
 
-    //IEnumerable<BooksReadVM> GetByPerformance(int id);
     BookReadWithClientsVM? GetByIDWithClients(int id);
 
     RequestStatus Add(BookAddVM doctor);

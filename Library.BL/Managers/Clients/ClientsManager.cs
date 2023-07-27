@@ -78,54 +78,7 @@ public class ClientsManager:IClientsManager
         return clientVM;
     }
 
-    //public clientEditVM GetByIdToEdit(int id)
-    //{
-    //    var client = _unitOfWork.ClientsRepo.GetById(id);
-    //    var clientVM = new clientEditVM
-    //    {
-    //        Id = client.Id,
-    //        Name = client.Name,
-    //        Quantity = client.Quantity
-
-    //    };
-
-    //    return clientVM;
-    //}
-
-
-
-    //public IEnumerable<DoctorsReadVM> GetByPerformance(int id)
-    //{
-    //    var doctors = _unitOfWork.ClientsRepo.GetDoctorsByPerformance(id);
-    //    var doctorsVM = doctors.Select(d => new DoctorsReadVM
-    //    {
-    //        Id = d.Id,
-    //        Name = d.Name,
-    //        PerformanceRate = d.PerformanceRate,
-    //        Salary = d.Salary,
-    //        Specialization = d.Specialization,
-    //    });
-
-    //    return doctorsVM;
-    //}
-
-
-
-    //public DoctorWithPatientVM GetByIDWithPatientsandIssues(Guid id)
-    //{
-    //    var doctor = _unitOfWork.ClientsRepo.GetByIdWithPatientandIssues(id);
-    //    var doctorsVM = new DoctorWithPatientVM
-    //    {
-    //        Id = doctor.Id,
-    //        Name = doctor.Name,
-    //        PerformanceRate = doctor.PerformanceRate,
-    //        Salary = doctor.Salary,
-    //        Specialization = doctor.Specialization,
-    //        Patients = doctor.Patients
-    //    };
-
-    //    return doctorsVM;
-    //}
+    
     #endregion
 
     #region 2-Add
